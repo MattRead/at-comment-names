@@ -18,7 +18,7 @@ class atCommentNames extends Plugin
 			return $matches[1];
 		};
 		$content = preg_replace_callback( '#(@[0-9a-zA-Z_]+)\b#i', $callback, $content );
-		$onclick = 'var c = document.getElementById(\'comment_content\'); c.focus(); c.innerHTML = \'@'. str_replace(' ', '_', $comment->name) .' \'; return true;';
+		$onclick = 'var c = document.getElementById(\'comment_content\'); c.focus(); c.innerHTML = c.innerHTML + \'@'. str_replace(' ', '_', $comment->name) .' \'; return true;';
 		$link = '<div class="at-comment-reply"><p><small><a href="#comment_content" onclick="' . $onclick . '">&#x21A9 Reply</a></small></p></div>';
 		return $content . $link;
 	}
