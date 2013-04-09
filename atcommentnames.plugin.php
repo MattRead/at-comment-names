@@ -2,7 +2,7 @@
 
 class atCommentNames extends Plugin
 {
-	public function filter_comment_content_out($content, $comment)
+	public function filter_comment_content_out_16($content, $comment)
 	{
 		$callback = function ($matches) use ($comment)
 		{
