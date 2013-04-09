@@ -4,20 +4,20 @@ class atCommentNames extends Plugin
 {
 	public function filter_comment_content_out($content, $comment)
 	{
-		if (!preg_match_all('#(@[0-9a-zA-Z_]+)\b#i', $content, $matches, PREG_SET_ORDER)) {
-			return $content;
-		}
-		$id = null;
-		foreach ( $matches as $m ) {
-			foreach($comment->post->comments as $com) {
-				if ($com->id < $comment->id && $com->name == substr($m[1], 1)) {
-					$id = $com->id;
+		$callback = function ($matches) use ($comment)
+		{
+			// loop backward until we find one.
+			$com = end($comment->post->comments);
+			do {
+				if ( $com->id < $comment->id && 
+					( $com->name == substr($matches[1], 1) || str_replace(' ', '_', $com->name) == substr($matches[1], 1) ) ) {
+					return '<a href="#comment-' . $com->id . '">' . $matches[1] . '</a>';
 				}
-			}
-			$content = $id ? str_replace($m[1], '<a href="#comment-'.$id.'">'.$m[1].'</a>', $content) : $content;
-			$id = null;
-		}
-		return $content;
+			} while ( $com = prev($comment->post->comments) );
+			// couldn't find any so return original value.
+			return $matches[1];
+		};
+		return preg_replace_callback( '#(@[0-9a-zA-Z_]+)\b#i', $callback, $content );
 	}
 }
 ?>
