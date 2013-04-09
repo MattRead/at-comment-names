@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pluggable type="plugin">
+	<name>At-Comment Names</name>
+	<author url="http://mattread.com/">Matt Read</author>
+	<version>0.1</version>
+	<url>https://github.com/MattRead/at-comment-names</url>
+	<description><![CDATA[Replace @name with link to the previous comment]]></description>
+	<license url="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0 and BSD (see NOTICE)</license>
+	<copyright>2013</copyright>
+	<guid>8a763381-0761-4f21-ba6c-438a091075d3</guid>
+</pluggable> 
+ 
