@@ -20,3 +20,4 @@ class atCommentNames extends Plugin
 		return $content;
 	}
 }
+?>
